@@ -23,7 +23,20 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<IReminderRepository, ReminderRepository>();
 builder.Services.AddScoped<ReminderService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
+
+// ⬅️ Use CORS before other middlewares
+app.UseCors("AllowFrontend");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -33,6 +46,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+
+
+
 app.UseAuthorization();
 app.MapControllers();
 

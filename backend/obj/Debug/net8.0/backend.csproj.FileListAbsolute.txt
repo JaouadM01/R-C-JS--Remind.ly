@@ -160,3 +160,6 @@ C:\Users\Jaoua\OneDrive\Documenten\GitHub\R-C-JS--Remind.ly\backend\obj\Debug\ne
 C:\Users\Jaoua\OneDrive\Documenten\GitHub\R-C-JS--Remind.ly\backend\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\Jaoua\OneDrive\Documenten\GitHub\R-C-JS--Remind.ly\backend\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\Jaoua\OneDrive\Documenten\GitHub\R-C-JS--Remind.ly\backend\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Jaoua\OneDrive\Documenten\GitHub\R-C-JS--Remind.ly\backend\obj\Debug\net8.0\backend.sourcelink.json
+C:\Users\Jaoua\OneDrive\Documenten\GitHub\R-C-JS--Remind.ly\backend\bin\Debug\net8.0\package-lock.json
+C:\Users\Jaoua\OneDrive\Documenten\GitHub\R-C-JS--Remind.ly\backend\bin\Debug\net8.0\package.json
