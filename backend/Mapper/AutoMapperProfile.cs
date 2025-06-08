@@ -9,7 +9,8 @@ namespace backend.Mapper
         public AutoMapperProfile()
         {
             CreateMap<User, RegisterDto>().ReverseMap();
-            CreateMap<Reminder, ReminderDto>().ReverseMap();
+            CreateMap<Reminder, ReminderDto>().ReverseMap()
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
             CreateMap<User, UserDto>().ReverseMap();
         }
     }

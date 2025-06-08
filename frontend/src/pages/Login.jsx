@@ -19,7 +19,7 @@ const Login = () => {
       if (data) {
         login(data); // save user info (id, email, token?)
         console.log(data);
-        navigate('/home');
+        navigate('/');
       } else {
         setError('Unexpected response from server');
       }

@@ -24,7 +24,7 @@ namespace backend.Controllers
                 return StatusCode(500, "An error occurred while retrieving upcoming reminders");
             }
         }
-        [HttpGet("this month")]
+        [HttpGet("thismonth")]
         public async Task<IActionResult> GetMonth(Guid userId)
         {
             try

@@ -29,6 +29,13 @@ namespace backend.Database
             var reminders = new List<Reminder>
             {
                 new Reminder {
+    Title = "Test vandaag",
+    Date = DateTime.UtcNow.AddHours(1), // 👈 today
+    Description = "Deze herinnering is vandaag",
+    Status = ReminderStatus.Upcoming,
+    UserId = user.Id
+},
+                new Reminder {
                     Title = "Verjaardag van Anna",
                     Date = DateTime.UtcNow.AddDays(3),
                     Description = "Koop een cadeau!",
@@ -55,7 +62,63 @@ namespace backend.Database
                     Description = "Oma bellen",
                     Status = ReminderStatus.Remembered,
                     UserId = user.Id
-                }
+                },
+                new Reminder {
+        Title = "Jaarlijkse APK keuring",
+        Date = DateTime.UtcNow.AddDays(10),
+        Description = "Auto naar garage brengen",
+        Status = ReminderStatus.Upcoming,
+        UserId = user.Id
+    },
+    new Reminder {
+        Title = "Huwelijksverjaardag",
+        Date = DateTime.UtcNow.AddDays(20),
+        Description = "Bloemen en diner reserveren",
+        Status = ReminderStatus.Upcoming,
+        UserId = user.Id
+    },
+    new Reminder {
+        Title = "Factuur betalen",
+        Date = DateTime.UtcNow.AddDays(-3),
+        Description = "Energiebedrijf factuur",
+        Status = ReminderStatus.Forgotten,
+        UserId = user.Id
+    },
+    new Reminder {
+        Title = "Boek uitleveren",
+        Date = DateTime.UtcNow.AddDays(1),
+        Description = "Bibliotheekboek terugbrengen",
+        Status = ReminderStatus.Upcoming,
+        UserId = user.Id
+    },
+    new Reminder {
+        Title = "Vergadering met HR",
+        Date = DateTime.UtcNow.AddDays(5).AddHours(14),
+        Description = "Online meeting om 15:00",
+        Status = ReminderStatus.Upcoming,
+        UserId = user.Id
+    },
+    new Reminder {
+        Title = "Medisch onderzoek",
+        Date = DateTime.UtcNow.AddDays(-10),
+        Description = "Resultaten ophalen",
+        Status = ReminderStatus.Remembered,
+        UserId = user.Id
+    },
+    new Reminder {
+        Title = "Weekendje weg boeken",
+        Date = DateTime.UtcNow.AddDays(12),
+        Description = "Booking.com checken",
+        Status = ReminderStatus.Upcoming,
+        UserId = user.Id
+    },
+    new Reminder {
+        Title = "Controleer verzekeringspolis",
+        Date = DateTime.UtcNow.AddDays(-7),
+        Description = "Verlengdatum checken",
+        Status = ReminderStatus.Forgotten,
+        UserId = user.Id
+    }
             };
 
             context.Reminders.AddRange(reminders);
