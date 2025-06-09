@@ -1,0 +1,117 @@
+/* CalendarPage.css */
+
+.calendar-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.calendar-header {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1e3a8a;
+  margin-bottom: 1.5rem;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.calendar-day,
+.calendar-cell {
+  padding: 1rem 0.5rem;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.calendar-day {
+  font-weight: 600;
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+.calendar-cell {
+  cursor: pointer;
+  position: relative;
+  background-color: #f8fafc;
+  color: #1e293b;
+  transition: background 0.2s ease;
+  min-height: 60px;
+}
+
+.calendar-cell:hover {
+  background-color: #e0f2fe;
+}
+
+/* Date number */
+.calendar-cell span {
+  position: relative;
+  z-index: 2;
+  font-size: 1rem;
+}
+
+/* This blue dot indicates reminders on this day */
+.reminder-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #3b82f6;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  box-shadow: 0 0 0 2px #e0f2fe; /* contrast outline */
+}
+
+/* Selected reminder details */
+.reminder-panel {
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  background-color: #f1f5f9;
+  border-radius: 12px;
+  border-top: 2px solid #93c5fd;
+}
+
+.reminder-panel h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1d4ed8;
+  margin-bottom: 1rem;
+}
+
+.reminder-item {
+  background-color: #ffffff;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid #3b82f6;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease;
+}
+
+.reminder-item:hover {
+  transform: translateX(6px);
+}
+
+.reminder-item-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.reminder-item-desc {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.selected-date {
+  border: 3px solid #3b82f6;
+  border-radius: 8px;
+  background-color: #e0f2ff;
+}
