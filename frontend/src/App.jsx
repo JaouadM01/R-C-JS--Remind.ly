@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import { Routes, Route } from 'react-router-dom'
 import ProfilePage from './pages/Profile'
+import AddReminder from './pages/AddReminder'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/calendar" element={<div>Calendar Page</div>} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/addreminder" element={<AddReminder />} />
       </Routes>
       <Navbar />
     </div>

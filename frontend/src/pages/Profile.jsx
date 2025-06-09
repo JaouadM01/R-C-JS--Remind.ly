@@ -57,6 +57,7 @@ const ProfilePage = () => {
                 <label>User ID:</label>
                 <p className="user-id">{data.id}</p>
             </div>
+
         </motion.div>
     );
 };

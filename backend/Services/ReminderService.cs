@@ -32,7 +32,7 @@ namespace backend.Services
             return _mapper.Map<List<ReminderDto>>(currentMonthReminders);
         }
 
-        public async Task<Reminder> CreateAsync(ReminderDto dto, Guid userId)
+        public async Task<Reminder> CreateAsync(RegisterReminderDto dto, Guid userId)
         {
             var reminder = new Reminder
             {
@@ -45,6 +45,21 @@ namespace backend.Services
             await _reminderRepo.AddAsync(reminder);
             return reminder;
         }
+
+        public async Task<ReminderStatsDto> GetStatsAsync(Guid userId)
+        {
+            var reminders = await _reminderRepo.GetUpcomingByUserAsync(userId);
+
+            var stats = new ReminderStatsDto
+            {
+                Total = reminders.Count(),
+                Remembered = reminders.Count(r => r.Status == ReminderStatus.Remembered),
+                Forgotten = reminders.Count(r => r.Status == ReminderStatus.Forgotten)
+            };
+
+            return stats;
+        }
+
 
         public async Task DeleteAsync(Guid reminderId)
         {

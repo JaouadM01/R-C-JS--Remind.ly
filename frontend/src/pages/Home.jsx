@@ -2,20 +2,30 @@ import { UserContext } from "../context/UserContext";
 import { useContext, useEffect, useState } from "react";
 import { fetchReminderThisMonth, updateReminderState } from "../apis/reminderdata";
 import "../css/Home.css";
+import { useNavigate } from "react-router-dom";
+import {
+  FaPlus,
+  FaCalendarAlt,
+  FaRegSmileBeam,
+  FaCheckCircle,
+  FaTimesCircle,
+} from "react-icons/fa";
+import ScoreWidget from "../components/ScoreWidget";
+
 
 const Home = () => {
   const { user } = useContext(UserContext);
   const [data, setData] = useState([]);
   const [selectedReminder, setSelectedReminder] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
+  const navigate = useNavigate();
 
   const showToast = (message) => {
     setToastMessage(message);
     setTimeout(() => {
       setToastMessage(null);
-    }, 3000); // disappears after 3s
+    }, 3000);
   };
-
 
   useEffect(() => {
     const getReminders = async () => {
@@ -43,7 +53,7 @@ const Home = () => {
   const formatDate = (isoDate) => {
     return new Date(isoDate).toLocaleDateString("en-GB", {
       day: "numeric",
-      month: "short"
+      month: "short",
     });
   };
 
@@ -61,11 +71,36 @@ const Home = () => {
 
   return (
     <>
+      <div className="greeting-container">
+        <div className="greeting-text">
+          <h1>Hello, {user?.name || "there"} 👋</h1>
+          <p>Here are your reminders for this month:</p>
+        </div>
+      </div>
+
+      {/* 📊 Score Widget Placement */}
+      <div className="score-widget-container">
+        <ScoreWidget userId={user?.id} />
+      </div>
+      
+      <div className="add-reminder-container">
+        <button className="add-reminder-button" onClick={() => navigate("/addreminder")}>
+          <FaPlus style={{ marginRight: "0.5rem" }} />
+          Add Reminder
+        </button>
+      </div>
+
       <div className="modern-card">
-        <h2 className="modern-title">Upcoming Reminders</h2>
+        <h2 className="modern-title">
+          <FaCalendarAlt style={{ marginRight: "0.5rem", color: "#3b82f6" }} />
+          Upcoming Reminders
+        </h2>
 
         {data.length === 0 ? (
-          <p className="empty-state">No reminders this month 🎉</p>
+          <p className="empty-state">
+            <FaRegSmileBeam style={{ marginRight: "0.5rem", color: "#10b981" }} />
+            No reminders this month 🎉
+          </p>
         ) : (
           <ul className="reminder-modern-list">
             {data.map((item, index) => (
@@ -79,13 +114,21 @@ const Home = () => {
                     showToast("You can only update reminders scheduled for today.");
                   }
                 }}
-
               >
                 <div className="reminder-date-badge">{formatDate(item.date)}</div>
                 <div className="reminder-modern-content">
                   <div className="reminder-modern-title">{item.title}</div>
                   <div className="reminder-modern-desc">{item.description}</div>
-                  {item.status != "Upcoming" ? <div className="reminder-modern-desc">{item.status}</div> : null}
+                  {item.status !== "Upcoming" && (
+                    <div className="reminder-modern-desc">
+                      {item.status === "Remembered" ? (
+                        <FaCheckCircle style={{ color: "#22c55e", marginRight: "0.25rem" }} />
+                      ) : (
+                        <FaTimesCircle style={{ color: "#ef4444", marginRight: "0.25rem" }} />
+                      )}
+                      {item.status}
+                    </div>
+                  )}
                 </div>
               </li>
             ))}
@@ -100,9 +143,11 @@ const Home = () => {
             <p>{selectedReminder.description}</p>
             <div className="popup-buttons">
               <button className="btn-red" onClick={() => handleStatusUpdate("Forgotten")}>
+                <FaTimesCircle style={{ marginRight: "0.3rem" }} />
                 Forgot
               </button>
               <button className="btn-green" onClick={() => handleStatusUpdate("Remembered")}>
+                <FaCheckCircle style={{ marginRight: "0.3rem" }} />
                 Remembered
               </button>
             </div>
@@ -112,12 +157,8 @@ const Home = () => {
           </div>
         </div>
       )}
-      {toastMessage && (
-        <div className="toast-message">
-          {toastMessage}
-        </div>
-      )}
 
+      {toastMessage && <div className="toast-message">{toastMessage}</div>}
     </>
   );
 };

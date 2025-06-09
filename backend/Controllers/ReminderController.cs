@@ -37,9 +37,22 @@ namespace backend.Controllers
                 return StatusCode(500, "An error occurred while retrieving upcoming reminders");
             }
         }
+        [HttpGet("stats")]
+        public async Task<IActionResult> GetStats([FromQuery] Guid userId)
+        {
+            try
+            {
+                var stats = await _reminderService.GetStatsAsync(userId);
+                return Ok(stats);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An error occurred while fetching reminder stats");
+            }
+        }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ReminderDto dto, Guid userId)
+        public async Task<IActionResult> Create(RegisterReminderDto dto, Guid userId)
         {
             try
             {

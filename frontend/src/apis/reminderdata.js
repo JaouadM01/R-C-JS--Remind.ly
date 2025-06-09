@@ -14,3 +14,13 @@ export const updateReminderState = async (reminderId, newStatus) => {
   });
   return res.data;
 };
+
+export const registerReminder = async (userId, reminder) => {
+  const res = await api.post(`/Reminder?userId=${userId}`, reminder);
+  return res.data;
+};
+
+export const fetchReminderStats = async (userId) => {
+  const res = await api.get(`/Reminder/stats?userId=${userId}`);
+  return res.data;
+};
