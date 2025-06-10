@@ -61,3 +61,13 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 480px) { 
+  .navbar {
+    gap: 30px;
+  }
+  .nav-item {
+    font-size: 22px;
+  }
+
+}
