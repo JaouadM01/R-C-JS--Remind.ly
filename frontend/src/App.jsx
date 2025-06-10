@@ -1,12 +1,12 @@
 import './App.css'
-import Login from './pages/Login'
+import Login from './pages/Login.tsx'
 import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import { Routes, Route } from 'react-router-dom'
 import ProfilePage from './pages/Profile'
-import AddReminder from './pages/AddReminder'
+import AddReminder from './pages/AddReminder.tsx'
 import CalendarPage from './pages/CalendarPage'
-import Register from './pages/Register'
+import Register from './pages/Register.tsx'
 
 function App() {
   return (
